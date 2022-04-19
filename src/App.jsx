@@ -1,44 +1,25 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React, {useState} from 'react'
+import axios from 'axios'
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  var baseUrl = "https://api.hgbrasil.com/weather?key=fae5ce68"
+
+  const [regiao, setRegiao] = useState('');
+  console.log("claudio", regiao)
+
+  async function consultaRegiao() {
+    const require = await axios.get(`${baseUrl}&city_name=${regiao}`)
+
+    console.log(require)
+  }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+      <div className="App">
+        <input type="text" placeholder='Informe a Região' onChange={event => setRegiao(event.target.value)}/>
+        <button onClick={consultaRegiao}>Consultar</button>
+      </div>
   )
 }
 
