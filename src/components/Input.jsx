@@ -1,13 +1,11 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 const Input = () => {
 
-  const [regiao, setRegiao] = useState('');
-  console.log("claudio", regiao)
-
-
   return (
-        <input type="text" placeholder='Informe a Região' onChange={event => setRegiao(event.target.value)}/>
+        <div className="container">
+          <h1>Hello</h1>
+        </div>
   )
 }
 
